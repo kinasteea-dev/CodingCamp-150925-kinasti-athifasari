@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlanIt - Modern To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">PlantIt</div>
+            <div class="date-display" id="currentDate"></div>
+        </header>
+
+        <main class="main-content">
+            <section class="task-form">
+                <h2 class="form-title">Create New Task</h2>
+                <form id="taskForm">
+                    <div class="form-group">
+                        <label for="taskTitle">Task Title *</label>
+                        <input type="text" id="taskTitle" class="form-control" placeholder="Enter task title..." maxlength="100">
+                        <div class="error-message" id="titleError">Please enter a task title</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskDescription">Description</label>
+                        <textarea id="taskDescription" class="form-control" placeholder="Enter task description..." rows="3" maxlength="300"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskDate">Due Date *</label>
+                        <input type="date" id="taskDate" class="form-control">
+                        <div class="error-message" id="dateError">Please select a due date</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="taskTime">Due Time</label>
+                        <input type="time" id="taskTime" class="form-control">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Category *</label>
+                        <div class="category-select">
+                            <div class="category-btn" data-category="work">Work</div>
+                            <div class="category-btn" data-category="personal">Personal</div>
+                            <div class="category-btn" data-category="health">Health</div>
+                            <div class="category-btn" data-category="education">Education</div>
+                            <div class="category-btn" data-category="finance">Finance</div>
+                            <div class="category-btn" data-category="other">Other</div>
+                        </div>
+                        <div class="error-message" id="categoryError">Please select a category</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Priority</label>
+                        <div class="priority-select">
+                            <div class="priority-btn low" data-priority="low">Low</div>
+                            <div class="priority-btn medium active" data-priority="medium">Medium</div>
+                            <div class="priority-btn high" data-priority="high">High</div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span id="submitText">Add Task</span>
+                    </button>
+                </form>
+            </section>
+
+            <section class="task-dashboard">
+                <div class="dashboard-header">
+                    <h2 class="dashboard-title">My Tasks</h2>
+                    <div class="task-stats">
+                        <span class="stat-item" id="totalTasks">Total: 0</span>
+                        <span class="stat-item" id="completedTasks">Completed: 0</span>
+                        <span class="stat-item" id="pendingTasks">Pending: 0</span>
+                    </div>
+                </div>
+
+                <div class="filters">
+                    <button class="filter-btn active" data-filter="all">All Tasks</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn" data-filter="completed">Completed</button>
+                    <button class="filter-btn" data-filter="today">Today</button>
+                    <button class="filter-btn" data-filter="overdue">Overdue</button>
+                    <button class="filter-btn" data-filter="high">High Priority</button>
+                </div>
+
+                <input type="text" class="search-box" id="searchInput" placeholder="Search tasks...">
+
+                <div class="task-list" id="taskList">
+                    <div class="empty-state">
+                        <h3>No tasks yet!</h3>
+                        <p>Create your first task to get started.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Edit Task Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Edit Task</h3>
+                <button class="close-btn" onclick="closeEditModal()">&times;</button>
+            </div>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="editTitle">Task Title *</label>
+                    <input type="text" id="editTitle" class="form-control" maxlength="100">
+                </div>
+                <div class="form-group">
+                    <label for="editDescription">Description</label>
+                    <textarea id="editDescription" class="form-control" rows="3" maxlength="300"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editDate">Due Date *</label>
+                    <input type="date" id="editDate" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="editTime">Due Time</label>
+                    <input type="time" id="editTime" class="form-control">
+                </div>
+                <button type="submit" class="submit-btn">Update Task</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
